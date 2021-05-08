@@ -22,16 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiverForFailure = null;
     // TODO: add any other fields to the activity as you want
 
-    public boolean isValid(String input) {
-        char[] chars = input.toCharArray();
-        for (char c : chars) {
-            if (c > '9' || c < '0' || c == '\0') {
-                return false;
-            }
-        }
-        return true;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,21 +65,21 @@ public class MainActivity extends AppCompatActivity {
             String userInputString = editTextUserInput.getText().toString();
 
             // todo: check that `userInputString` is a number. handle bad input. convert `userInputString` to long
-            if (isValid(userInputString)) {
-                long userInputLong = 0; // todo this should be the converted string from the user
-                try {
-                    userInputLong = Long.parseLong(userInputString);
-                    buttonCalculateRoots.setEnabled(false);
-                    progressBar.setVisibility(View.VISIBLE);
-                    intentToOpenService.putExtra("number_for_service", userInputLong);
-                    startService(intentToOpenService);
 
-                    // todo: set views states according to the spec (below)
+            long userInputLong = 0; // todo this should be the converted string from the user
+            try {
+                userInputLong = Long.parseLong(userInputString);
+                buttonCalculateRoots.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
+                intentToOpenService.putExtra("number_for_service", userInputLong);
+                startService(intentToOpenService);
 
-                } catch (Exception e) {
-                    buttonCalculateRoots.setEnabled(false);
-                }
+                // todo: set views states according to the spec (below)
+
+            } catch (Exception e) {
+                buttonCalculateRoots.setEnabled(false);
             }
+
         });
 
         // register a broadcast-receiver to handle action "found_roots"
