@@ -14,11 +14,13 @@ public class CalculateRootsService extends IntentService {
     public void findRoots(long number, long timeStartMs) {
         for (long i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
-                Long num = number/i;
+                long num = number/i;
+                long timePassed = System.currentTimeMillis() - timeStartMs;
                 Intent broadcastIntent = new Intent("found_roots");
                 broadcastIntent.putExtra("original_number",number);
                 broadcastIntent.putExtra("root1", i);
                 broadcastIntent.putExtra("root2", num);
+                broadcastIntent.putExtra("calculated_time",timePassed);
                 sendBroadcast(broadcastIntent);
                 return;
 //                send broadcast with action "found_roots" and with extras:
@@ -29,9 +31,9 @@ public class CalculateRootsService extends IntentService {
             }
             long timePassed = System.currentTimeMillis() - timeStartMs;
             if (timePassed >= 20000) {
-                Intent broadcastIntent = new Intent("time_until_give_up_seconds");
+                Intent broadcastIntent = new Intent("stopped_calculations");
                 broadcastIntent.putExtra("original_number",number);
-                broadcastIntent.putExtra("time_until_give_up",timePassed);
+                broadcastIntent.putExtra("time_until_give_up_seconds",timePassed);
                 sendBroadcast(broadcastIntent);
                 return;
 //          send broadcast with action "stopped_calculations" and with extras:
@@ -42,9 +44,12 @@ public class CalculateRootsService extends IntentService {
 
         }
         Intent broadcastIntent = new Intent("found_roots");
+        long timePassed = System.currentTimeMillis() - timeStartMs;
         broadcastIntent.putExtra("original_number",number);
-        broadcastIntent.putExtra("root1", 1);
+        long n = 1;
+        broadcastIntent.putExtra("root1", n);
         broadcastIntent.putExtra("root2", number);
+        broadcastIntent.putExtra("calculated_time",timePassed);
         sendBroadcast(broadcastIntent);
     }
 

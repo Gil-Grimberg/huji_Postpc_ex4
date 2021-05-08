@@ -41,6 +41,7 @@ public class CalculateRootsServiceTest extends TestCase {
     // verify the broadcast that was sent by the service has all the data we expect
     Intent broadcastFromService = broadcastedIntents.get(0);
     assertNotNull(broadcastFromService);
+
     assertEquals("found_roots", broadcastFromService.getAction());
     long originalNumber = broadcastFromService.getLongExtra("original_number", 0);
     long firstRoot = broadcastFromService.getLongExtra("root1", 0);

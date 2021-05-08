@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FindRoots</string>
+    <string name="root1">root1</string>
+    <string name="root2">root2</string>
+    <string name="input">Input</string>
+    <string name="tbd">TBD</string>
+    <string name="success_on_calculating_roots">Success on calculating roots!</string>
 </resources>

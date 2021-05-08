@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultsActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:background="@color/purple_200"
+        android:text="@string/success_on_calculating_roots"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/input"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="50dp"
+        android:text="@string/input"
+        android:background="@color/purple_200"
+        />
+
+    <TextView
+        android:id="@+id/original_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/input"
+        app:layout_constraintTop_toTopOf="@id/input"
+        android:layout_marginStart="16dp"
+        android:text="@string/tbd"
+        />
+
+
+    <TextView
+        android:id="@+id/root1"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/input"
+        app:layout_constraintTop_toTopOf="@+id/input"
+        android:layout_marginTop="50dp"
+
+        android:background="@color/purple_200"
+        android:text="@string/root1"
+        />
+
+    <TextView
+        android:id="@+id/root1_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/root1"
+        app:layout_constraintTop_toTopOf="@id/root1"
+        android:layout_marginStart="16dp"
+        android:text="@string/tbd"
+        />
+
+    <TextView
+        android:id="@+id/root2"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/root1"
+        app:layout_constraintTop_toTopOf="@+id/root1"
+        android:layout_marginTop="50dp"
+
+        android:background="@color/purple_200"
+        android:text="@string/root2"
+        />
+
+    <TextView
+        android:id="@+id/root2_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/root2"
+        app:layout_constraintTop_toTopOf="@id/root2"
+        android:layout_marginStart="16dp"
+        android:text="@string/tbd"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
