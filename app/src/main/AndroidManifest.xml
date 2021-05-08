@@ -24,8 +24,6 @@
         <activity android:name=".ResultsActivity">
         </activity>
 
-<!--        TODO create a new class extending Activity and register it here in an <activity> tag -->
-
     </application>
 
 </manifest>

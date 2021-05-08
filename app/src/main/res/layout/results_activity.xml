@@ -84,5 +84,26 @@
         android:text="@string/tbd"
         />
 
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/root2"
+        app:layout_constraintTop_toTopOf="@+id/root2"
+        android:layout_marginTop="50dp"
+
+        android:background="@color/purple_200"
+        android:text="@string/calculation_time"
+        />
+
+    <TextView
+        android:id="@+id/time_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/time"
+        app:layout_constraintTop_toTopOf="@id/time"
+        android:layout_marginStart="16dp"
+        android:text="@string/tbd"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

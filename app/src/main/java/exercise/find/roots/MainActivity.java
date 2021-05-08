@@ -83,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     intentToOpenService.putExtra("number_for_service", userInputLong);
                     startService(intentToOpenService);
-                    buttonCalculateRoots.setEnabled(true);
-                    progressBar.setVisibility(View.GONE);
+
                     // todo: set views states according to the spec (below)
 
                 } catch (Exception e) {
@@ -142,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
                 String aborting_time_string = String.valueOf(aborting_time);
                 String text = "calculation aborted after " + aborting_time + " milliseconds";
                 Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+                buttonCalculateRoots.setEnabled(true);
+                progressBar.setVisibility(View.GONE);
             }
         };
         registerReceiver(broadcastReceiverForFailure, new IntentFilter("stopped_calculations"));
