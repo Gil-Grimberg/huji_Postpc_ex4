@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private BroadcastReceiver broadcastReceiverForSuccess = null;
+    private BroadcastReceiver broadcastReceiverForFailure = null;
     // TODO: add any other fields to the activity as you want
 
     public boolean isValid(String input){
@@ -90,7 +91,11 @@ public class MainActivity extends AppCompatActivity {
             public void onReceive(Context context, Intent incomingIntent) {
                 if (incomingIntent == null || !incomingIntent.getAction().equals("found_roots"))
                     return;
+
                 // success finding roots!
+                long root1 = incomingIntent.getLongExtra("root1",0);
+                long root2 = incomingIntent.getLongExtra("root2",0);
+
         /*
          TODO: handle "roots-found" as defined in the spec (below).
           also:
@@ -108,13 +113,20 @@ public class MainActivity extends AppCompatActivity {
      to show a Toast, use this code:
      `Toast.makeText(this, "text goes here", Toast.LENGTH_SHORT).show()`
      */
-    }
+        broadcastReceiverForFailure = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent incomingIntent) {
+
+            }
+        };}
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // todo: remove ALL broadcast receivers we registered earlier in onCreate().
         //  to remove a registered receiver, call method `this.unregisterReceiver(<receiver-to-remove>)`
+        this.unregisterReceiver(broadcastReceiverForSuccess);
+        this.unregisterReceiver(broadcastReceiverForFailure);
     }
 
     @Override
@@ -129,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO: load data from bundle and set screen state (see spec below)
     }
 }
+
 
 
 /*

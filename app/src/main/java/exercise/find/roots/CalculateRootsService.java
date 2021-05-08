@@ -14,11 +14,13 @@ public class CalculateRootsService extends IntentService {
     public void findRoots(long number, long timeStartMs) {
         for (long i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
-
+                Long num = number/i;
                 Intent broadcastIntent = new Intent("found_roots");
+                broadcastIntent.putExtra("original_number",number);
                 broadcastIntent.putExtra("root1", i);
-                broadcastIntent.putExtra("root2", number / i);
+                broadcastIntent.putExtra("root2", num);
                 sendBroadcast(broadcastIntent);
+                return;
 //                send broadcast with action "found_roots" and with extras:
 //                - "original_number"(long)
 //                        - "root1"(long)
@@ -28,8 +30,10 @@ public class CalculateRootsService extends IntentService {
             long timePassed = System.currentTimeMillis() - timeStartMs;
             if (timePassed >= 20000) {
                 Intent broadcastIntent = new Intent("time_until_give_up_seconds");
+                broadcastIntent.putExtra("original_number",number);
                 broadcastIntent.putExtra("time_until_give_up",timePassed);
                 sendBroadcast(broadcastIntent);
+                return;
 //          send broadcast with action "stopped_calculations" and with extras:
 //          - "original_number"(long)
 //           - "time_until_give_up_seconds"(long) the time we tried calculating
@@ -37,6 +41,11 @@ public class CalculateRootsService extends IntentService {
             }
 
         }
+        Intent broadcastIntent = new Intent("found_roots");
+        broadcastIntent.putExtra("original_number",number);
+        broadcastIntent.putExtra("root1", 1);
+        broadcastIntent.putExtra("root2", number);
+        sendBroadcast(broadcastIntent);
     }
 
     @Override
@@ -48,6 +57,7 @@ public class CalculateRootsService extends IntentService {
             Log.e("CalculateRootsService", "can't calculate roots for non-positive input" + numberToCalculateRootsFor);
             return;
         } else {
+
             findRoots(numberToCalculateRootsFor,timeStartMs);
         }
     /*
